@@ -15,9 +15,7 @@ class ImportCsvCommand extends Command
 
     protected function configure()
     {
-        $this
-            ->setDescription('Imports data from a CSV file into the database')
-        ;
+        $this->setDescription('Imports data from a CSV file into the database');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -25,5 +23,7 @@ class ImportCsvCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('Start export...');
 
+        $io->progressFinish();
+        $io->success('Export done ✅');
     }
 }

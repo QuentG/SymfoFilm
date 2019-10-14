@@ -17,7 +17,7 @@ class Rating
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ratings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
@@ -38,7 +38,7 @@ class Rating
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Movie")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Movie", inversedBy="ratings")
      * @ORM\JoinColumn(nullable=false)
      */
     private $movie;

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +45,25 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="author")
+	 */
+    private $ratings;
+
+	/**
+	 * @param Movie $movie
+	 * @return bool
+	 */
+    public function hasRate(Movie $movie): bool
+	{
+		$ratings = $this->getRatings();
+		foreach ($ratings as $rating) {
+			if ($rating->getAuthor() == $movie) return true;
+		}
+
+		return false;
+	}
 
     public function getId(): ?int
     {
@@ -141,4 +161,34 @@ class User implements UserInterface
 
         return $this;
     }
+
+	/**
+	 * @return Collection|Rating[]
+	 */
+	public function getRatings(): Collection
+	{
+		return $this->ratings;
+	}
+
+	public function addRating(Rating $rating): self
+	{
+		if (!$this->ratings->contains($rating)) {
+			$this->ratings[] = $rating;
+			$rating->setAuthor($this);
+		}
+		return $this;
+	}
+
+	public function removeRating(Rating $rating): self
+	{
+		if (!$this->ratings->contains($rating)) {
+			$this->ratings->removeElement($rating);
+			// set the owning side to null (unless already changed)
+			if ($rating->getAuthor() === $this) {
+				$rating->setAuthor($this);
+			}
+		}
+
+		return $this;
+	}
 }

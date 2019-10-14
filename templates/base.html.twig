@@ -8,7 +8,7 @@
     </head>
     <body>
 
-        {% include '_includes/header.html.twig' %}
+        {{ render(controller('App\\Controller\\HomeController::navBar', {} )) }}
 
         {% block body %}{% endblock %}
 

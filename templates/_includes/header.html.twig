@@ -9,8 +9,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Films</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href=#">Catégories</a>
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                    Catégories
+                </a>
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                    {% for category in categories %}
+                        <a class="dropdown-item" href="{{ path('category', { 'slug' : category.slug}) }}">{{ category.title }}</a>
+                    {% endfor %}
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Acteurs</a>
@@ -26,7 +33,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a class="nav-link" href="#"><img src="{{ user.picture }}" alt="{{ user.username }}" height="32" style="display: inline" class="mr-2 rounded-circle">{{ user.username }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
                 </li>
             {% endif %}
         </ul>
