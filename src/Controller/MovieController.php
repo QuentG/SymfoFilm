@@ -8,6 +8,7 @@ use App\Form\RatingType;
 use App\Repository\MovieRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,10 +36,11 @@ class MovieController extends AbstractController
     }
 
 	/**
-	 * @Route("/movie/slug", name="movie_show")
+	 * @Route("/movie/{slug}", name="movie_show")
 	 *
 	 * @param Movie $movie
 	 * @param Request $request
+	 * @return RedirectResponse|Response
 	 */
     public function show(Movie $movie, Request $request)
 	{

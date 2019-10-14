@@ -2,14 +2,14 @@
     <div class="card-header">
         <h4>
             <a href="{{ path('movie_show', { 'slug' : movie.slug }) }}" class="stretched-link">
-                {{ movie }}</a>
+                {{ movie.title }}</a>
         </h4>
     </div>
     <div style="position: relative">
-        <img src="{{ movie.image }}" alt="{{ movie }}" class="movie-img" style="width: 100%" data-crop-image-ratio="1.2">
+        <img src="{{ movie.image  }}" alt="{{ movie.title }}" class="movie-img" style="width: 100%" data-crop-image-ratio="1.2">
         {% if movie.ratings %}
             <span class="badge badge-success" style="position: absolute; top:10px; right: 10px">
-                {{ movie.ratings | number_format(1, ",", " ") }} / 5
+                 / 5
             </span>
         {% endif %}
     </div>

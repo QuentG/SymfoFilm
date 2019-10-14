@@ -1,54 +1,56 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    {{ people }}
+    {{ people.fullName }}
 {% endblock %}
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-6">
-            <h1>{{ people }}</h1>
-            <p>{{ people.description | raw }}</p>
-        </div>
-        <div class="col-6">
-            <img src="{{ people.picture }}" alt="{{ people.fullName }}" class="src" style="width: 100%">
-        </div>
-    </div>
-
-    {% if people.actedIn | length %}
-        <hr />
-        <h2>{{ people.fullName }} a joué dans {{ people.actedIn | length }}
-            {% if people.actedIn.count > 1 %}
-                films :
-            {% else %}
-                film :
-            {% endif %}
-        </h2>
-
+    <div class="container py-5">
         <div class="row">
-            {% for movie in people.actedIn %}
-                <div class="col-3">
-                    <div class="card border-secondary mb-3">
-                        <div class="card-header">
-                            <h5>{{ movie.title }}</h5>
-                        </div>
-                        <div>
-                            <img src="{{ movie.image }}" alt="{{ movie }}" style="width: 100%">
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title">Sortie en salle le
-                                <strong>{{ movie.releasedAt | date('d/m/Y') }}</strong>
-                            </h6>
-                            <a href="{{ path('movie_show', { 'slug' : movie.slug }) }}" class="btn btn-primary">Plus d'info</a>
+            <div class="col-6">
+                <h1>{{ people.fullName }}</h1>
+                <p>{{ people.description | raw }}</p>
+            </div>
+            <div class="col-6">
+                <img src="{{ people.picture }}" alt="{{ people.fullName }}" style="width: 100%">
+            </div>
+        </div>
+
+        {% if people.actedIn | length %}
+            <hr />
+            <h2>{{ people.fullName }} a joué dans {{ people.actedIn | length }}
+                {% if people.actedIn.count > 1 %}
+                    films :
+                {% else %}
+                    film :
+                {% endif %}
+            </h2>
+
+            <div class="row">
+                {% for movie in people.actedIn %}
+                    <div class="col-3">
+                        <div class="card border-secondary mb-3">
+                            <div class="card-header">
+                                <h5>{{ movie.title }}</h5>
+                            </div>
+                            <div>
+                                <img src="{{ movie.image }}" alt="{{ movie.title }}" style="width: 100%">
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-title">Sortie en salle le
+                                    <strong>{{ movie.releasedAt | date('d/m/Y') }}</strong>
+                                </h6>
+                                <a href="{{ path('movie_show', { 'slug' : movie.slug }) }}" class="btn btn-primary">Plus d'info</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <hr />
-        <h2>{{ people.fullName }} est un looser</h2>
-    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <hr />
+            <h2>{{ people.fullName }} est un looser</h2>
+        {% endif %}
+    </div>
 
 {% endblock %}

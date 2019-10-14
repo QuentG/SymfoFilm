@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Rating;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +15,7 @@ class RatingType extends AbstractType
             ->add('notation', null, [
             	'label' => 'Note entre 1 et 5'
 			])
-            ->add('comment', TextType::class, [
+            ->add('comment', null, [
             	'label' => 'Votre avis sur ce film'
 			])
         ;
