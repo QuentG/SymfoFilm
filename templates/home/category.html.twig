@@ -7,7 +7,7 @@
         <h1 class="py-5">Catégorie : <strong>{{ category.title }}</strong></h1>
         <hr>
         {% for movie in category.movies %}
-            <div class="col-4">
+            <div class="col-4 row">
                {% include "_includes/_card.html.twig" with {'movie': movie } %}
             </div>
         {% endfor %}

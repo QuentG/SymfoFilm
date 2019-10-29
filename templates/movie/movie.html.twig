@@ -7,9 +7,6 @@
         <h1 class="py-5">{{movie.title}}</h1>
         <h3>Sortie en salle en
             {{ movie.releasedAt|date('Y') }}
-            <span class="badge badge-success float-right">
-                Noté : / 5
-            </span>
         </h3>
         <h5>
             {% for category in movie.categories %}
@@ -50,64 +47,5 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="alert alert-primary">
-
-            {% if alreadyHasRating %}
-                <h2>Vous avez déjà donné votre avis sur ce film</h2>
-            {% else %}
-
-                {% if is_granted('ROLE_USER') %}
-                    <h2>Vous aussi, Donnez votre avis sur "{{movie.title}}"</h2>
-                    {{ form_start(form)}}
-                    {{ form(form)}}
-                    <button class="btn btn-success" type="submit">
-                        <i class="fas fa-check"></i>
-                        Ajouter mon avis
-                    </button>
-                    {{ form_end(form)}}
-
-                {% else %}
-                    <h2>Connectez-vous si vous souhaitez donner votre avis sur le film</h2>
-                    <a href="{{ path('app_login') }}" class="btn btn-primary">
-                        <i class="fas fa-lock-open"></i>
-                        Connexion
-                    </a>
-                {% endif %}
-            {% endif %}
-
-        </div>
-
-        <hr>
-
-        <h2>{{movie.ratings | length}} critiques de la communauté </h2>
-
-        {% for rating in movie.ratings %}
-            <div class="row">
-                <div class="col-2" style="margin-bottom: 15px">
-                    <img src="{{ rating.author.picture }}" alt="{{ rating.author.username }}" style="width: 100%">
-                </div>
-                <div class="col-10" style="margin-bottom: 15px">
-
-    {#                {% if is_granted('ROLE_MODERATOR') %}#}
-
-    {#                    <div style="float:right">#}
-    {#                        <a href=" {{ path('rating_delete', { id: rating.id } ) }} ">#}
-    {#                            <i class="fas fa-trash"></i>#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                {% endif %}#}
-
-                    <blockquote>
-                        <em>{{ rating.comment }}</em>
-                    </blockquote>
-                    <p>par
-                        {{ rating.author.username }}, le
-                        {{ rating.createdAt | date('d/m/Y') }}
-                    </p>
-
-                </div>
-            </div>
-        {% endfor %}
     </div>
-
 {% endblock %}

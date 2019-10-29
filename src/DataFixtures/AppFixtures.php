@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Movie;
 use App\Entity\People;
-use App\Entity\Rating;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -90,7 +89,7 @@ class AppFixtures extends Fixture
 		for ($m = 0; $m <= 30; $m++) {
 			$movie = new Movie();
 			$movie->setTitle($faker->realText(20))
-				->setImage('')
+				->setImage('https://picsum.photos/500/200?random=2')
 				->setReleasedAt($faker->dateTimeBetween('-30 years'))
 				->setSynopsis('<p>' . join('</p><p>', $faker->paragraphs(10)) . '</p>');
 
@@ -104,20 +103,6 @@ class AppFixtures extends Fixture
 				$movie->addCategory($category);
 			}
 
-			// Ratings
-			for ($r = 0; $r < $faker->numberBetween(0, 20); $r++) {
-				$rating = new Rating();
-				$rating->setAuthor($faker->randomElement($users))
-					->setMovie($movie)
-					->setNotation($faker->numberBetween(1, 5))
-					->setCreatedAt($faker->dateTimeBetween('- 15 years'));
-
-				if ($faker->numberBetween(1, 10) > 1) {
-					$rating->setComment($faker->text);
-				}
-
-				$manager->persist($rating);
-			}
 
 			$manager->persist($movie);
 //			$movies[] = $movie;
