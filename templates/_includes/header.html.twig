@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Films</a>
+                <a class="nav-link" href="{{ path('movies') }}">Films</a>
             </li>
             <li class="nav-item dropdown">
                 <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
@@ -20,7 +20,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Acteurs</a>
+{#                <a class="nav-link" href="{{ path('actors') }}">Acteurs</a>#}
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -42,3 +42,13 @@
         </ul>
     </div>
 </nav>
+
+{% for label, messages in app.flashes %}
+    <div class="container mt-5">
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                <p>{{ message|raw }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}

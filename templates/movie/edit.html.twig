@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit movie{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="py-5">Modification du film <strong>{{ movie.title }}</strong></h1>
+        {{ form(form) }}
+    </div>
+
+{% endblock %}

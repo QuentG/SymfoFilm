@@ -46,12 +46,12 @@ class Movie
     private $synopsis;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", mappedBy="movies")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="movies")
      */
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\People", mappedBy="actedIn")
+     * @ORM\ManyToMany(targetEntity="App\Entity\People", inversedBy="actedIn")
      */
     private $actors;
 
