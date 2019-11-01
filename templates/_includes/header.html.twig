@@ -30,7 +30,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="{{ user.picture }}" alt="{{ user.username }}" height="32" style="display: inline" class="mr-2 rounded-circle">{{ user.username }}</a>
+                    <a class="nav-link" href="{{ path('my_account') }}"><img src="{{ user.picture }}" alt="{{ user.username }}" height="32" style="display: inline" class="mr-2 rounded-circle">{{ user.username }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>

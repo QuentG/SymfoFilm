@@ -6,6 +6,7 @@ use App\Entity\Movie;
 use App\Form\MovieType;
 use App\Repository\MovieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,12 +29,20 @@ class MovieController extends AbstractController
 	 * @Route("/movies", name="movies")
 	 *
 	 * @param MovieRepository $movieRepository
+	 * @param PaginatorInterface $paginator
+	 * @param Request $request
 	 * @return Response
 	 */
-    public function index(MovieRepository $movieRepository)
+    public function index(MovieRepository $movieRepository, PaginatorInterface $paginator, Request $request)
     {
+    	$movies = $paginator->paginate(
+    		$movieRepository->findAll(), // Query
+			$request->query->get('page', 1), // Page number
+			6 // Limit per page
+		);
+
         return $this->render('movie/index.html.twig', [
-            'movies' => $movieRepository->findAll()
+            'movies' => $movies
         ]);
     }
 
