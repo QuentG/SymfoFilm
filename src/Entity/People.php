@@ -46,7 +46,7 @@ class People
     private $picture;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", inversedBy="actors")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", mappedBy="actors")
      */
     private $actedIn;
 

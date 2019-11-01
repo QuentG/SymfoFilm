@@ -31,7 +31,7 @@ class Category
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", inversedBy="categories")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Movie", mappedBy="categories")
      */
     private $movies;
 

@@ -5,20 +5,30 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\People;
 use App\Repository\CategoryRepository;
+use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
-    public function index() : Response
+	/**
+	 * @Route("/", name="home")
+	 *
+	 * @param MovieRepository $movieRepository
+	 * @return Response
+	 */
+    public function index(MovieRepository $movieRepository) : Response
     {
-        return $this->render('home/index.html.twig', []);
+        return $this->render('home/index.html.twig', [
+        	'lastMovies' =>  $movieRepository->findLatestMovies()
+		]);
     }
 
+	/**
+	 * @param CategoryRepository $categoryRepository
+	 * @return Response
+	 */
     public function navBar(CategoryRepository $categoryRepository)
 	{
 		$categories = $categoryRepository->findBy([], ['title' => 'ASC']); // OrderBy title ASC

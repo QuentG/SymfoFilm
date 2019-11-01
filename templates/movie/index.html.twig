@@ -6,7 +6,13 @@
     <div class="container">
         <h1 class="py-5">Liste des films</h1>
 
-        <p><a class="btn btn-primary" href="{{ path('movie_new') }}"><i class="fas fa-plus mr-2"></i>Ajouter un nouveau film</a></p>
+        {% if is_granted('ROLE_ADMIN') %}
+            <p>
+                <a class="btn btn-primary" href="{{ path('movie_new') }}">
+                    <i class="fas fa-plus mr-2"></i>Ajouter un nouveau film
+                </a>
+            </p>
+        {% endif %}
 
         <table class="table table-striped">
             <thead>
@@ -26,13 +32,15 @@
                             <i class="fas fa-search mr-2"></i> Afficher
                         </a>
 
-                        <a class="btn btn-success" href="{{ path('movie_edit', {'slug': movie.slug}) }}">
-                            <i class="fas fa-pencil mr-2"></i>Modifier
-                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-success" href="{{ path('movie_edit', {'slug': movie.slug}) }}">
+                                <i class="fas fa-edit mr-2"></i>Modifier
+                            </a>
 
-                        <a class="btn btn-danger" href="{{ path('movie_delete', {'slug': movie.slug}) }}">
-                            <i class="fas fa-trash mr-2"></i>Supprimer
-                        </a>
+                            <a class="btn btn-danger" href="{{ path('movie_delete', {'slug': movie.slug}) }}">
+                                <i class="fas fa-trash mr-2"></i>Supprimer
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}

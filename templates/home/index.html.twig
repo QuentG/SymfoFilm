@@ -3,5 +3,39 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    <div class="container mt-5">
+        <div class="jumbotron">
+            <h1 class="text-center">Bienvenue sur SymfoFilm ! 📽</h1>
+            <hr>
+            <p class="text-center">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        </div>
 
+        <h1 class="py-5">Les 5 derniers films</h1>
+
+        <div class="alert alert-info">
+            <h2 class="alert-heading my-3"><i class="fas fa-arrow-right"></i> Les 5 derniers films !</h2>
+            <table class="table table-striped text-black">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Date de sortie</th>
+                    <th>Acteurs</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for lastMovie in lastMovies %}
+                    <tr>
+                        <td>{{ lastMovie.title }}</td>
+                        <td>{{ lastMovie.releasedAt| date('d-m-Y') }}</td>
+                        <td>
+                            {% for actor in lastMovie.actors %}
+                                {{ actor.fullName }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

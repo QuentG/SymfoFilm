@@ -22,17 +22,19 @@
             </div>
             <div class="col-4">
                 <p><img src="{{ movie.image }}" alt="{{ movie.title }}" style="width: 100%"></p>
-    {#            {% if is_granted('ROLE_ADMIN') %}#}
-    {#                <p>#}
-    {#                    <a class="btn btn-primary" href="{{ path('movie_edit', {'slug': movie.slug}) }}">#}
-    {#                        <i class="fas fa-edit"></i>#}
-    {#                        Modifier</a>#}
-    {#                    {% include('movie/_delete_form.html.twig') %}#}
-    {#                </p>#}
-    {#            {% endif %}#}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <p>
+                        <a class="btn btn-primary" href="{{ path('movie_edit', {'slug': movie.slug}) }}">
+                            <i class="fas fa-edit"></i>
+                            Modifier</a>
+                    </p>
+                {% endif %}
 
             </div>
-        </div><hr><h2>Casting :</h2>
+        </div>
+        <hr>
+        <h2>Casting :</h2>
         <div class="row">
             {% for actor in movie.actors %}
                 <div class="col-3">
