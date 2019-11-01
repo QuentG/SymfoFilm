@@ -11,13 +11,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
+	/**
+	 * @var MovieRepository
+	 */
 	private $movieRepository;
 
+	/**
+	 * ApiController constructor.
+	 *
+	 * @param MovieRepository $movieRepository
+	 */
 	public function __construct(MovieRepository $movieRepository)
 	{
 		$this->movieRepository = $movieRepository;
 	}
-
 
 	/**
 	 * @Route("/api", name="api_endpoint")
