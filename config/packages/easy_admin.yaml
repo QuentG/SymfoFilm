@@ -1,0 +1,27 @@
+easy_admin:
+    site_name: 'SymfoFilm - Panel Admin'
+    user:
+        name_property_path: 'username'
+        display_avatar: false
+    entities:
+        Utilisateurs:
+            class: App\Entity\User
+            actions:
+                - { name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary' }
+                - { name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger' }
+        Films:
+            class: App\Entity\Movie
+            actions:
+                - { name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary' }
+                - { name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger' }
+        Acteurs:
+          class: App\Entity\People
+          actions:
+            - { name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary' }
+            - { name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger' }
+            -
+        Categories:
+          class: App\Entity\Category
+          actions:
+            - { name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-secondary' }
+            - { name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger' }
