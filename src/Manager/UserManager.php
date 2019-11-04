@@ -18,13 +18,25 @@ class UserManager
 	 */
 	private $passwordEncoder;
 
+	/**
+	 * UserManager constructor.
+	 *
+	 * @param EntityManagerInterface $entityManager
+	 * @param UserPasswordEncoderInterface $passwordEncoder
+	 */
 	public function __construct(EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder)
 	{
 		$this->entityManager = $entityManager;
 		$this->passwordEncoder = $passwordEncoder;
 	}
 
-	public function create($email, $username, $password, array $role)
+	/**
+	 * @param string $email
+	 * @param string $username
+	 * @param string $password
+	 * @param array $role
+	 */
+	public function create(string $email, string $username, string $password, array $role)
 	{
 		$user = new User();
 

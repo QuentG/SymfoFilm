@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
 
 	/**
 	 * AppFixtures constructor.
+	 *
 	 * @param UserPasswordEncoderInterface $passwordEncoder
 	 */
 	public function __construct(UserPasswordEncoderInterface $passwordEncoder)
