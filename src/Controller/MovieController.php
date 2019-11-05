@@ -63,7 +63,7 @@ class MovieController extends AbstractController
 			$this->em->persist($movie);
 			$this->em->flush();
 
-			$this->addFlash('success', 'Votre film à bien été ajouter !');
+			$this->addFlash('success', 'Votre film à bien été ajouté !');
 
 			return $this->redirectToRoute('movie_show', ['slug' => $movie->getSlug()]);
 		}
@@ -103,7 +103,7 @@ class MovieController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 			$this->em->flush();
 
-			$this->addFlash('success', "Le film {$movie->getTitle()} à bien été modifier !");
+			$this->addFlash('success', "Le film {$movie->getTitle()} à bien été modifié !");
 
 			return $this->redirectToRoute('movie_show', ['slug' => $movie->getSlug()]);
 		}
@@ -125,7 +125,7 @@ class MovieController extends AbstractController
 		$this->em->remove($movie);
 		$this->em->flush();
 
-		$this->addFlash('success', 'Le film a bien été supprimer !');
+		$this->addFlash('success', 'Le film a bien été supprimé !');
 
 		return $this->redirectToRoute('movies');
 	}
