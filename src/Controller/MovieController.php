@@ -76,13 +76,15 @@ class MovieController extends AbstractController
 	/**
 	 * @Route("/movie/{slug}", name="movie_show")
 	 *
-	 * @param Movie $movie
+	 * @param $slug
 	 * @return RedirectResponse|Response
 	 */
-    public function show(Movie $movie)
+    public function show($slug)
 	{
+		$movie = $this->getDoctrine()->getManager()->getRepository(Movie::class);
+
 		return $this->render('movie/movie.html.twig', [
-			'movie' => $movie,
+			'movie' => $movie->findOneBySlug($slug),
 		]);
 	}
 
